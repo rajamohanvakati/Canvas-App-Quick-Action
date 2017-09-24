@@ -1,9 +1,9 @@
 var express  = require('express'),
   bodyParser = require('body-parser'),
-  app        = express(),
   path       = require('path'),
   CryptoJS   = require("crypto-js");
 
+app        = express(),
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'bower_components')));
 
@@ -11,6 +11,7 @@ app.use(bodyParser.json()); // create application/json parser
 app.use(bodyParser.urlencoded({ entended: true })); //create application/x-www-urlencoded parser
 
 var views = path.join(__dirname, 'public/views');
+ var   consumerSecret = process.env.CONSUMER_SECRET,
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(views, 'index.html'));
@@ -18,7 +19,7 @@ app.get('/', function (req, res) {
 
 app.post('/', function (req, res) {
   // Desk secret key	
-  var shared = "4397119454446181938";
+  var shared = consumerSecret;
   // Grab signed request
   var signed_req = req.body.signed_request;
   // split request at '.'
