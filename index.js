@@ -11,7 +11,7 @@ app.use(bodyParser.json()); // create application/json parser
 app.use(bodyParser.urlencoded({ entended: true })); //create application/x-www-urlencoded parser
 
 var views = path.join(__dirname, 'public/views');
- var   consumerSecret = process.env.CONSUMER_SECRET,
+ var   consumerSecret = process.env.CONSUMER_SECRET;
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(views, 'index.html'));
